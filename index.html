@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جنود المهدی | مجموعه رسانه‌ای نوین</title>
+<meta name="description" content="جنود المهدی؛ مجموعه‌ای تخصصی در مسیر کار رسانه‌ای، آموزش و فعالیت محتوایی.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050a08;
+  --text:#f5f8f6;
+  --muted:#9aada2;
+  --neon:#00ff88;
+  --green:#23d66b;
+  --gold:#e8c15a;
+  --line:rgba(255,255,255,.1);
+  --glass:rgba(10,18,14,.72);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Vazirmatn",Tahoma,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.85;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* ===== CYBER BG ===== */
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:#050a08}
+.bg-base{position:absolute;inset:0;background:
+  radial-gradient(ellipse 90% 55% at 85% -5%,rgba(0,255,136,.07),transparent 50%),
+  radial-gradient(ellipse 60% 45% at 5% 100%,rgba(0,170,255,.03),transparent 48%),
+  radial-gradient(ellipse 50% 40% at 55% 40%,rgba(35,214,107,.025),transparent 55%),
+  radial-gradient(ellipse 100% 100% at 50% 50%,transparent 35%,rgba(0,0,0,.55) 100%)}
+.orb{position:absolute;border-radius:50%;filter:blur(100px);animation:orb 26s ease-in-out infinite}
+.o1{width:460px;height:460px;background:rgba(0,255,136,.14);top:-16%;right:-10%;animation-duration:30s}
+.o2{width:320px;height:320px;background:rgba(0,170,255,.03);bottom:0;left:-8%;animation-duration:34s;animation-delay:-9s}
+.o3{width:260px;height:260px;background:rgba(232,193,90,.05);top:42%;left:42%;animation-duration:28s;animation-delay:-14s}
+@keyframes orb{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(28px,-36px) scale(1.08)}}
+.floor{position:absolute;left:-12%;right:-12%;bottom:-12%;height:65%;
+  background-image:linear-gradient(rgba(0,255,136,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,.03) 1px,transparent 1px);
+  background-size:52px 52px;transform:perspective(450px) rotateX(56deg);transform-origin:center top;
+  -webkit-mask-image:linear-gradient(to bottom,#000,transparent 82%);mask-image:linear-gradient(to bottom,#000,transparent 82%);
+  animation:floor 28s linear infinite;opacity:.28}
+@keyframes floor{0%{background-position:0 0}100%{background-position:0 52px}}
+.grid{position:absolute;inset:0;
+  background-image:linear-gradient(rgba(0,255,136,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,.03) 1px,transparent 1px);
+  background-size:72px 72px;opacity:.55;
+  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 25%,#000 12%,transparent 68%);
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 25%,#000 12%,transparent 68%)}
+#matrix{position:absolute;inset:0;width:100%;height:100%;opacity:.08}
+.hex{position:absolute;inset:0;overflow:hidden;font-family:ui-monospace,Consolas,monospace;font-size:11px;color:#00ff88;opacity:.08;line-height:1.35}
+.hex-col{position:absolute;top:0;white-space:pre;animation:hexFall linear infinite;text-shadow:0 0 8px rgba(0,255,136,.7)}
+@keyframes hexFall{0%{transform:translateY(-105%);opacity:0}6%{opacity:.85}92%{opacity:.35}100%{transform:translateY(108vh);opacity:0}}
+.circuit{position:absolute;inset:0;overflow:hidden}
+.cl{position:absolute;height:1px;background:linear-gradient(90deg,transparent,rgba(0,255,136,.2),transparent);animation:clp 3.2s ease-in-out infinite}
+.cl.v{width:1px;height:110px;background:linear-gradient(180deg,transparent,rgba(0,255,136,.18),transparent)}
+@keyframes clp{0%,100%{opacity:.12}50%{opacity:.6}}
+.scan{display:none}
+@keyframes scanY{0%{top:-90px}100%{top:100%}}
+.scanlines{display:none}
+.dots{position:absolute;inset:0;overflow:hidden}
+.dot{position:absolute;border-radius:50%;background:#00ff88;box-shadow:0 0 4px rgba(0,255,136,.5);opacity:0;animation:rise linear infinite}
+.dot.g{background:var(--gold);box-shadow:0 0 6px var(--gold)}
+.dot.r{border-radius:0}
+@keyframes rise{0%{transform:translateY(100vh) scale(.4);opacity:0}10%{opacity:.8}90%{opacity:.12}100%{transform:translateY(-6vh) scale(1);opacity:0}}
+
+.wrap{position:relative;z-index:1}
+
+/* header */
+header{position:sticky;top:0;z-index:60;border-bottom:1px solid var(--line);background:rgba(5,10,8,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+nav{height:70px;display:flex;align-items:center;justify-content:space-between;gap:14px;width:min(1140px,92%);margin:auto}
+.logo{display:flex;align-items:center;gap:11px;font-weight:900;font-size:1.02rem}
+.logo-b{width:44px;height:44px;border-radius:13px;padding:5px;display:grid;place-items:center;border:1px solid rgba(0,255,136,.35);background:linear-gradient(145deg,rgba(0,255,136,.14),rgba(0,0,0,.25));box-shadow:0 0 22px rgba(0,255,136,.18),inset 0 1px 0 rgba(255,255,255,.06)}
+.logo-b img{width:100%;height:100%;object-fit:contain}
+.nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+.nav-links a{color:var(--muted);padding:8px 14px;border-radius:11px;font-size:.87rem;font-weight:500;transition:.2s}
+.nav-links a:hover{color:var(--text);background:rgba(255,255,255,.06)}
+.nav-cta{background:linear-gradient(135deg,#23d66b,#11b055)!important;color:#021008!important;font-weight:800!important;box-shadow:0 6px 20px rgba(35,214,107,.22)!important}
+.menu{display:none;width:42px;height:42px;border-radius:11px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--text);font-size:18px;cursor:pointer}
+
+/* hero */
+.hero{padding:84px 0 64px}
+.hero-grid{width:min(1140px,92%);margin:auto;display:grid;grid-template-columns:1.08fr .92fr;gap:48px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 15px;border-radius:999px;font-size:.77rem;font-weight:700;color:#8ff5b5;border:1px solid rgba(0,255,136,.32);background:rgba(0,255,136,.035);margin-bottom:20px;box-shadow:0 0 24px rgba(0,255,136,.1)}
+.eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--neon);box-shadow:0 0 12px var(--neon);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.7)}}
+h1{font-size:clamp(2.8rem,6.5vw,5.2rem);line-height:1.06;font-weight:900;letter-spacing:-1.8px}
+h1 em{font-style:normal;color:var(--neon);text-shadow:0 0 28px rgba(0,255,136,.22)}
+.hero-copy{color:var(--muted);font-size:1.02rem;max-width:520px;margin:20px 0 28px}
+.actions{display:flex;gap:11px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 22px;border-radius:14px;font-weight:800;font-size:.9rem;border:1px solid var(--line);transition:.25s}
+.btn-p{background:linear-gradient(135deg,#23d66b,#0db058);color:#021008;border:none;box-shadow:0 10px 28px rgba(35,214,107,.2)}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 16px 44px rgba(35,214,107,.42)}
+.btn-s{background:rgba(255,255,255,.05);color:var(--text)}
+.btn-s:hover{background:rgba(255,255,255,.09);border-color:rgba(0,255,136,.3);transform:translateY(-2px)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:36px}
+.stat{padding:16px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.04);backdrop-filter:blur(8px);transition:.25s}
+.stat:hover{border-color:rgba(0,255,136,.35);background:rgba(0,255,136,.06)}
+.stat strong{display:block;font-size:1.35rem;color:var(--neon);font-weight:900;line-height:1.4}
+.stat span{color:var(--muted);font-size:.75rem}
+
+/* logo card */
+.visual{border-radius:28px;padding:2px;background:linear-gradient(145deg,rgba(0,255,136,.55),rgba(232,193,90,.22),rgba(0,255,136,.07));box-shadow:0 28px 60px rgba(0,0,0,.4),0 0 30px rgba(0,255,136,.08)}
+@keyframes cardGlow{0%{box-shadow:0 32px 80px rgba(0,0,0,.35),0 0 40px rgba(0,255,136,.1)}100%{box-shadow:0 32px 80px rgba(0,0,0,.35),0 0 70px rgba(0,255,136,.22)}}
+.visual-in{border-radius:26px;padding:30px 26px 22px;background:linear-gradient(165deg,#0f1c16,#0a1210);display:flex;flex-direction:column;min-height:380px;position:relative;overflow:hidden}
+.visual-in::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 30%,rgba(0,255,136,.1),transparent 55%);pointer-events:none}
+.vlogo{flex:1;display:grid;place-items:center;position:relative;z-index:1;padding:16px}
+.vlogo img{max-width:94%;max-height:250px;object-fit:contain;filter:drop-shadow(0 0 28px rgba(0,255,136,.2));animation:float 5.5s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.vfoot{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid var(--line);padding-top:15px;color:var(--muted);font-size:.8rem;position:relative;z-index:1}
+.vfoot b{display:block;color:var(--text);font-size:.92rem}
+.b110{font-weight:900;font-size:1.15rem;color:var(--neon);text-shadow:0 0 16px rgba(0,255,136,.18)}
+
+section{padding:80px 0}
+.container{width:min(1140px,92%);margin:auto}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:22px;margin-bottom:32px}
+.kicker{color:var(--gold);font-size:.73rem;font-weight:800;letter-spacing:.6px;margin-bottom:5px}
+h2{font-size:clamp(1.55rem,3.6vw,2.35rem);font-weight:900;line-height:1.28}
+.sec-desc{color:var(--muted);max-width:470px;font-size:.9rem}
+
+.about-grid{display:grid;grid-template-columns:1fr 1.12fr;gap:15px}
+.glass{border-radius:22px;padding:26px;border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 16px 40px rgba(0,0,0,.18)}
+.glass p{color:var(--muted);font-size:.96rem}
+.quote{margin-top:20px;padding:13px 15px;border-radius:13px;background:rgba(0,255,136,.08);border-right:3px solid var(--neon);color:#d8efe4;font-weight:700}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.feat{padding:16px;border-radius:15px;border:1px solid var(--line);background:rgba(0,0,0,.22);transition:.25s}
+.feat:hover{border-color:rgba(0,255,136,.35);background:rgba(0,255,136,.06);transform:translateY(-3px)}
+.feat-ico{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;font-size:1.15rem;margin-bottom:10px;background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.18)}
+.feat b{display:block;font-size:.88rem;margin-bottom:3px}
+.feat span{color:var(--muted);font-size:.74rem}
+
+.units{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.unit{position:relative;overflow:hidden;min-height:215px;border-radius:20px;padding:22px;border:1px solid var(--line);background:linear-gradient(160deg,#101c17,#0a1210);transition:.3s}
+.unit::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,255,136,.2),transparent);opacity:0;transition:.3s}
+.unit::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 100% 0%,rgba(0,255,136,.07),transparent 50%);opacity:0;transition:.3s}
+.unit:hover{transform:translateY(-7px);border-color:rgba(0,255,136,.4);box-shadow:0 24px 55px rgba(0,0,0,.3),0 0 36px rgba(0,255,136,.1)}
+.unit:hover::before,.unit:hover::after{opacity:1}
+.unit-n{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;font-weight:900;font-size:.8rem;color:var(--neon);margin-bottom:14px;background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.22);position:relative;z-index:1}
+.unit h3{font-size:1.04rem;margin-bottom:9px;position:relative;z-index:1}
+.unit p{font-size:.8rem;color:var(--muted);position:relative;z-index:1}
+
+.join-box{border-radius:30px;padding:2px;background:linear-gradient(135deg,rgba(0,255,136,.4),rgba(232,193,90,.18),rgba(0,255,136,.07));box-shadow:0 0 50px rgba(0,255,136,.08)}
+.join-in{border-radius:28px;padding:48px 36px;text-align:center;background:linear-gradient(165deg,#0f1c16,#0a1210)}
+.join-in h2{margin-bottom:8px}
+.user{display:inline-flex;margin:18px auto 6px;padding:9px 20px;border-radius:999px;border:1px solid rgba(0,255,136,.35);background:rgba(0,255,136,.035);color:var(--neon);font-weight:800;direction:ltr;box-shadow:0 0 24px rgba(0,255,136,.07)}
+.channels{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:24px;text-align:right}
+.ch{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px;border-radius:15px;border:1px solid var(--line);background:rgba(255,255,255,.035);transition:.25s}
+.ch:hover{border-color:rgba(0,255,136,.4);background:rgba(0,255,136,.07);transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.2)}
+.ch b{display:block;font-size:.86rem}
+.ch small{color:var(--muted);font-size:.71rem}
+.ch .arr{color:var(--neon);font-size:1.15rem;transition:.25s}
+.ch:hover .arr{transform:translateX(-5px)}
+
+footer{border-top:1px solid var(--line);padding:30px 0 40px;color:var(--muted);font-size:.76rem}
+.foot{width:min(1140px,92%);margin:auto;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.foot-logo{display:flex;align-items:center;gap:9px;font-weight:900;color:var(--text)}
+.foot-logo img{width:34px;height:34px;object-fit:contain}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.reveal.show{opacity:1;transform:none}
+
+@media(max-width:920px){
+  .hero-grid,.about-grid{grid-template-columns:1fr}
+  .visual-in{min-height:300px}.vlogo img{max-height:190px}
+  .units{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  nav{height:62px}
+  .nav-links{display:none;position:absolute;top:62px;right:4%;left:4%;flex-direction:column;padding:10px;border-radius:16px;background:rgba(10,20,16,.97);border:1px solid var(--line);box-shadow:0 20px 50px rgba(0,0,0,.4)}
+  .nav-links.open{display:flex}
+  .nav-links a{width:100%;text-align:center;padding:12px}
+  .menu{display:grid;place-items:center}
+  .hero{padding:52px 0 44px}
+  .stats,.feat-grid,.units,.channels{grid-template-columns:1fr}
+  .sec-head{flex-direction:column;align-items:flex-start}
+  .join-in{padding:34px 18px}
+  .foot{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true">
+  <div class="bg-base"></div>
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+  <div class="grid"></div>
+  <div class="floor"></div>
+  <canvas id="matrix"></canvas>
+  <div class="hex" id="hex"></div>
+  <div class="circuit" id="circuit"></div>
+  <div class="scan"></div>
+  <div class="scanlines"></div>
+  <div class="dots" id="dots"></div>
+</div>
+
+<div class="wrap">
+<header>
+<nav>
+  <a class="logo" href="#"><span class="logo-b"><img src="assets/images/logo-1.png" alt="لوگو" width="34" height="25"></span><span>جنود المهدی</span></a>
+  <button class="menu" aria-label="منو" onclick="document.querySelector('.nav-links').classList.toggle('open')">📋</button>
+  <ul class="nav-links">
+    <li><a href="#about">درباره مجموعه</a></li>
+    <li><a href="#units">بخش‌ها</a></li>
+    <li><a href="#join">عضویت</a></li>
+    <li><a href="#channels">کانال‌ها</a></li>
+    <li><a class="nav-cta" href="#join">🚀 همراه شو</a></li>
+  </ul>
+</nav>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-grid">
+    <div class="reveal">
+      <div class="eyebrow"><i></i> ✨ مجموعه رسانه‌ای نوین و کارآمد</div>
+      <h1>جنود <em>المهدی</em></h1>
+      <p class="hero-copy">یک مجموعه تخصصی برای فعالیت رسانه‌ای، یادگیری و تولید محتوای هدفمند؛ با شش بخش فعال و مسیر رشد برای علاقه‌مندان، از شروع تا حرفه‌ای.</p>
+      <div class="actions">
+        <a class="btn btn-p" href="#join">🚀 ورود به مجموعه</a>
+        <a class="btn btn-s" href="#units">🧩 شناخت بخش‌ها</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong>🧩 ۶</strong><span>بخش تخصصی</span></div>
+        <div class="stat"><strong>📚 ∞</strong><span>آموزش رایگان</span></div>
+        <div class="stat"><strong>🎯 ۱</strong><span>هدف مشترک</span></div>
+      </div>
+    </div>
+    <div class="visual reveal">
+      <div class="visual-in">
+        <div class="vlogo"><img src="assets/images/logo-2.png" alt="لوگو" width="400" height="290"></div>
+        <div class="vfoot">
+          <div><b>رسانه • آموزش • پژوهش</b><span>ساختار یکپارچه برای فعالیت رسانه‌ای</span></div>
+          <div class="b110">۱۱۰</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div><div class="kicker">📖 شناخت مجموعه</div><h2>رسانه‌ای برای یادگیری و اثرگذاری</h2></div>
+      <p class="sec-desc">ساختار مجموعه برای علاقه‌مندانی طراحی شده که می‌خواهند در بخش‌های مختلف رسانه‌ای مهارت کسب کنند و فعالیت داشته باشند.</p>
+    </div>
+    <div class="about-grid">
+      <div class="glass reveal">
+        <p>جنود المهدی با هدف تقویت فعالیت رسانه‌ای و تبیین معارف مهدوی شکل گرفته است. مجموعه در شش واحد تخصصی فعالیت می‌کند و برای سطوح مختلف، از مبتدی تا حرفه‌ای، آموزش‌های کاربردی ارائه می‌دهد.</p>
+        <div class="quote">💡 اگر بلد نیستید هم بیایید و یاد بگیرید.</div>
+      </div>
+      <div class="glass feat-grid reveal">
+        <div class="feat"><div class="feat-ico">📡</div><b>رسانه تخصصی</b><span>خبر، گرافیک و پشتیبانی</span></div>
+        <div class="feat"><div class="feat-ico">🛡️</div><b>فعالیت سایبری</b><span>مرصاد و فعالیت فضای مجازی</span></div>
+        <div class="feat"><div class="feat-ico">📚</div><b>جهاد تبیین</b><span>مهدویت و پژوهش</span></div>
+        <div class="feat"><div class="feat-ico">🎓</div><b>آموزش محور</b><span>یادگیری در تمام واحدها</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="units">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div><div class="kicker">🏗️ ساختار سازمانی</div><h2>شش بخش اصلی</h2></div>
+      <p class="sec-desc">هر واحد مأموریت مشخصی دارد و علاقه‌مندان می‌توانند مسیر مناسب خود را پیدا کنند.</p>
+    </div>
+    <div class="units">
+      <article class="unit reveal"><div class="unit-n">۱</div><h3>📰 رسانه خبری</h3><p>تولید و انتشار محتوای خبری، پوشش رویدادها و اطلاع‌رسانی دقیق و سریع در فضای رسانه‌ای.</p></article>
+      <article class="unit reveal"><div class="unit-n">۲</div><h3>🎨 رسانه گرافیکی</h3><p>طراحی گرافیک، پوستر، موشن و محتوای بصری جذاب برای تقویت پیام‌رسانی رسانه‌ای.</p></article>
+      <article class="unit reveal"><div class="unit-n">۳</div><h3>🛠️ پشتوانه رسانه‌ای</h3><p>پشتیبانی فنی و محتوایی از فعالیت‌های رسانه‌ای، هماهنگی و تقویت زیرساخت‌های مجموعه.</p></article>
+      <article class="unit reveal"><div class="unit-n">۴</div><h3>🛡️ جبهه سایبری مرصاد</h3><p>پاسدار امنیت فضای مجازی ایران — جهاد تبیین در میدان سایبر. یکی از مقتدرترین تشکل‌های مردمی در پالایش فضای مجازی با شناسایی عناصر ضد انقلاب، پالایش کانال‌های مستهجن و خنثی‌سازی عوامل نفوذی.</p></article>
+      <article class="unit reveal"><div class="unit-n">۵</div><h3>📚 جهاد تبیین و مهدویت</h3><p>تبیین معارف مهدوی، پاسخ به شبهات و تقویت گفتمان انتظار و مهدویت در جامعه.</p></article>
+      <article class="unit reveal"><div class="unit-n">۶</div><h3>🔬 واحد پژوهشی</h3><p>پژوهش، مطالعه و تولید محتوای علمی و تحلیلی در حوزه‌های مرتبط با مأموریت مجموعه.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="join">
+  <div class="container">
+    <div class="join-box reveal">
+      <div class="join-in">
+        <div class="kicker">🤝 شروع همکاری</div>
+        <h2>جای تو در مجموعه خالیه</h2>
+        <p class="sec-desc" style="margin:8px auto 0">حتی اگر مهارت خاصی ندارید، می‌توانید با آموزش‌های متنوع در واحدهای مختلف همراه مجموعه شوید.</p>
+        <div class="user">👤 @IR_Mahdi_110</div>
+        <p style="color:var(--muted);font-size:.8rem">برای عضویت در کادر مجموعه و جبهه سایبری مرصاد به پیوی پیام دهید.</p>
+        <div class="channels" id="channels">
+          <a class="ch" href="https://eitaa.com/joinchat/2908030464Caaa0e9d67b" target="_blank" rel="noopener"><div><b>کانال جنود المهدی</b><small>لینک عضویت در ایتا</small></div><span class="arr">🔗</span></a>
+          <a class="ch" href="https://eitaa.com/joinchat/1875641763C09930621bd" target="_blank" rel="noopener"><div><b>کانال مرصاد</b><small>جبهه سایبری — لینک ایتا</small></div><span class="arr">🔗</span></a>
+          <a class="ch" href="https://eitaa.com/channel_Mahdi" target="_blank" rel="noopener"><div><b>مجموعه | Mahdi 110</b><small>کانال اصلی مجموعه در ایتا</small></div><span class="arr">🔗</span></a>
+          <a class="ch" href="https://eitaa.com/siber_ir" target="_blank" rel="noopener"><div><b>کانال جبهه سایبری مرصاد</b><small>@siber_ir</small></div><span class="arr">🔗</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="foot">
+    <div class="foot-logo"><img src="assets/images/logo-1.png" alt="لوگو" width="34" height="25"> جنود المهدی</div>
+    <div>مجموعه‌ای نوین و کارآمد در مسیر کار رسانه‌ای</div>
+    <div>© تمامی حقوق محفوظ است</div>
+  </div>
+</footer>
+</div>
+
+<script>
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.querySelector('.nav-links').classList.remove('open')));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
+(function(){
+  var m=window.innerWidth<640;
+  var c=document.getElementById('matrix');
+  if(c){
+    var x=c.getContext('2d'),w,h,cols,drops,ch='01アイウエオカキクケコサシスセソ01ABCDEF';
+    function rs(){w=c.width=innerWidth;h=c.height=innerHeight;cols=Math.floor(w/(m?20:16));drops=Array(cols).fill(1)}
+    rs();addEventListener('resize',rs);
+    (function draw(){
+      x.fillStyle='rgba(5,10,8,0.1)';x.fillRect(0,0,w,h);
+      x.fillStyle='#00ff88';x.font=(m?12:13)+'px monospace';
+      for(var i=0;i<drops.length;i++){
+        x.globalAlpha=.06+Math.random()*.12;
+        x.fillText(ch[Math.floor(Math.random()*ch.length)],i*(m?20:16),drops[i]*(m?18:16));
+        if(drops[i]*(m?18:16)>h&&Math.random()>.975)drops[i]=0;
+        drops[i]++;
+      }
+      x.globalAlpha=1;requestAnimationFrame(draw);
+    })();
+  }
+  var hx=document.getElementById('hex');
+  if(hx){
+    var s=['0x1A','0xFF','0x00','0x7B','1101','0010','0xC0','0xDE','1010','0x3F','0101','0x88'],n=m?6:11;
+    for(var i=0;i<n;i++){
+      var d=document.createElement('div');d.className='hex-col';
+      var t='';for(var j=0;j<20;j++)t+=s[Math.floor(Math.random()*s.length)]+'\n';
+      d.textContent=t;d.style.left=(i*(100/n)+Math.random()*2)+'%';
+      d.style.animationDuration=(9+Math.random()*11)+'s';d.style.animationDelay=(-Math.random()*9)+'s';
+      d.style.fontSize=(10+Math.random()*3)+'px';hx.appendChild(d);
+    }
+  }
+  var cir=document.getElementById('circuit');
+  if(cir){
+    for(var i=0;i<(m?3:5);i++){
+      var L=document.createElement('div'),v=Math.random()>.5;
+      L.className='cl'+(v?' v':'');
+      if(v){L.style.left=(Math.random()*100)+'%';L.style.top=(Math.random()*50)+'%';L.style.height=(55+Math.random()*130)+'px'}
+      else{L.style.top=(Math.random()*100)+'%';L.style.left=(Math.random()*28)+'%';L.style.width=(70+Math.random()*200)+'px'}
+      L.style.animationDelay=(-Math.random()*3)+'s';L.style.animationDuration=(2.4+Math.random()*3)+'s';
+      cir.appendChild(L);
+    }
+  }
+  var box=document.getElementById('dots');
+  if(box){
+    for(var i=0;i<(m?6:10);i++){
+      var d=document.createElement('span'),r=Math.random();
+      d.className='dot'+(r>.75?' g':'')+(r<.22?' r':'');
+      var s=1.2+Math.random()*2.2;
+      d.style.width=(d.classList.contains('r')?s*2.2:s)+'px';
+      d.style.height=(d.classList.contains('r')?1:s)+'px';
+      d.style.left=(Math.random()*100)+'%';
+      d.style.animationDuration=(9+Math.random()*13)+'s';
+      d.style.animationDelay=(-Math.random()*14)+'s';
+      box.appendChild(d);
+    }
+  }
+})();
+</script>
+</body>
+</html>
